@@ -284,7 +284,7 @@ export async function addCommand(
 
     // Install CSS
     installSpinner.text = 'Installing globals.css...';
-    await installGlobalsCss(info, files.baseCss, files.tokens, cssResolution);
+    await installGlobalsCss(info, files.baseCss, files.tokens, files.fonts, cssResolution);
 
     // Install components
     installSpinner.text = 'Installing components...';

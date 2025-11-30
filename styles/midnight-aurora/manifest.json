@@ -131,7 +131,7 @@
           "action": "VERIFY PostCSS config uses @tailwindcss/postcss",
           "critical": true,
           "why": "Tailwind v4 requires @tailwindcss/postcss package, NOT tailwindcss as PostCSS plugin.",
-          "expected_config": "export default { plugins: ['@tailwindcss/postcss'] }",
+          "expected_config": "export default { plugins: { '@tailwindcss/postcss': {} } }",
           "verification": "postcss.config.js/mjs uses '@tailwindcss/postcss' plugin"
         },
         {

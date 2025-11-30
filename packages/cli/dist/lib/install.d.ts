@@ -18,7 +18,7 @@ export declare function installUtils(info: ProjectInfo, utils: string, hasConfli
 /**
  * Compose and install globals.css
  */
-export declare function installGlobalsCss(info: ProjectInfo, baseCss: string, tokens: string, resolution: CssConflictResolution): Promise<string>;
+export declare function installGlobalsCss(info: ProjectInfo, baseCss: string, tokens: string, fonts: string, resolution: CssConflictResolution): Promise<string>;
 /**
  * Install component files
  */

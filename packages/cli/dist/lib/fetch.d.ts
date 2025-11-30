@@ -10,6 +10,7 @@ export interface StyleFiles {
     utils: string;
     baseCss: string;
     tokens: string;
+    fonts: string;
     components: Map<string, string>;
     readme: string;
     tailwindConfigPatch: string | null;

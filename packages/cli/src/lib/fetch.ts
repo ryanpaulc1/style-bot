@@ -16,6 +16,7 @@ export interface StyleFiles {
   utils: string;
   baseCss: string;
   tokens: string;
+  fonts: string;
   components: Map<string, string>;
   readme: string;
   tailwindConfigPatch: string | null;
@@ -101,6 +102,7 @@ export async function fetchStyleFiles(
     utils,
     baseCss,
     tokens,
+    fonts,
     components,
     readme,
     tailwindConfigPatch
@@ -109,6 +111,7 @@ export async function fetchStyleFiles(
     fetchFile(`${baseUrl}/shared/lib/utils.ts`),
     fetchFile(`${baseUrl}/shared/base.v${version}.css`),
     fetchFile(`${baseUrl}/styles/${styleName}/tokens.v${version}.css`),
+    fetchFile(`${baseUrl}/styles/${styleName}/fonts.css`).catch(() => ''),
     fetchComponents(baseUrl),
     fetchFile(`${baseUrl}/styles/${styleName}/STYLE.md`).catch(() => ''),
     version === '3'
@@ -121,6 +124,7 @@ export async function fetchStyleFiles(
     utils,
     baseCss,
     tokens,
+    fonts,
     components,
     readme,
     tailwindConfigPatch

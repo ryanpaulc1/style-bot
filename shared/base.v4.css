@@ -1,5 +1,7 @@
 /* Token Atelier - Shared Base Styles (Tailwind v4) */
 
+/* STYLE_FONT_IMPORTS */
+
 @import "tailwindcss";
 
 /* Dark mode custom variant for class-based switching */

@@ -212,7 +212,7 @@ export async function addCommand(styleName, options) {
         await installUtils(info, files.utils, conflicts.hasUtilsConflict, conflicts.utilsHasCn);
         // Install CSS
         installSpinner.text = 'Installing globals.css...';
-        await installGlobalsCss(info, files.baseCss, files.tokens, cssResolution);
+        await installGlobalsCss(info, files.baseCss, files.tokens, files.fonts, cssResolution);
         // Install components
         installSpinner.text = 'Installing components...';
         const componentCount = await installComponents(info, files.components, componentResolution);

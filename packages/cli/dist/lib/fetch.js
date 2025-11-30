@@ -69,11 +69,12 @@ export async function fetchStyleFiles(styleName, tailwindVersion) {
     const baseUrl = SOURCE_BASE;
     const version = tailwindVersion || '4'; // Default to v4 if not detected
     // Fetch all files in parallel
-    const [manifest, utils, baseCss, tokens, components, readme, tailwindConfigPatch] = await Promise.all([
+    const [manifest, utils, baseCss, tokens, fonts, components, readme, tailwindConfigPatch] = await Promise.all([
         fetchFile(`${baseUrl}/styles/${styleName}/manifest.json`),
         fetchFile(`${baseUrl}/shared/lib/utils.ts`),
         fetchFile(`${baseUrl}/shared/base.v${version}.css`),
         fetchFile(`${baseUrl}/styles/${styleName}/tokens.v${version}.css`),
+        fetchFile(`${baseUrl}/styles/${styleName}/fonts.css`).catch(() => ''),
         fetchComponents(baseUrl),
         fetchFile(`${baseUrl}/styles/${styleName}/STYLE.md`).catch(() => ''),
         version === '3'
@@ -85,6 +86,7 @@ export async function fetchStyleFiles(styleName, tailwindVersion) {
         utils,
         baseCss,
         tokens,
+        fonts,
         components,
         readme,
         tailwindConfigPatch

@@ -49,9 +49,19 @@ export function cn(...inputs: ClassValue[]) {
 /**
  * Compose and install globals.css
  */
-export async function installGlobalsCss(info, baseCss, tokens, resolution) {
+export async function installGlobalsCss(info, baseCss, tokens, fonts, resolution) {
+    // Replace the font imports placeholder with actual font imports
+    let processedBaseCss = baseCss;
+    if (fonts) {
+        processedBaseCss = baseCss.replace('/* STYLE_FONT_IMPORTS */', fonts.trim());
+    }
+    else {
+        processedBaseCss = baseCss.replace('/* STYLE_FONT_IMPORTS */\n\n', '');
+        processedBaseCss = processedBaseCss.replace('/* STYLE_FONT_IMPORTS */\n', '');
+        processedBaseCss = processedBaseCss.replace('/* STYLE_FONT_IMPORTS */', '');
+    }
     // Compose the CSS
-    const composedCss = `${baseCss}
+    const composedCss = `${processedBaseCss}
 
 /* ===== Token Atelier - Style Tokens ===== */
 
@@ -218,7 +228,9 @@ export async function installTailwindCss(info, version) {
         execSync(installCmd, { cwd: info.paths.root, stdio: 'inherit' });
         // Create postcss.config.js
         const postcssConfig = `export default {
-  plugins: ['@tailwindcss/postcss']
+  plugins: {
+    '@tailwindcss/postcss': {}
+  }
 }
 `;
         await fs.writeFile(path.join(info.paths.root, 'postcss.config.js'), postcssConfig);
