@@ -8,7 +8,7 @@ import { detectProject, validateProject } from '../lib/detect.js';
 import { getApiKey, validateApiKey, isAuthRequired } from '../lib/auth.js';
 import { fetchStyleFiles, getAvailableStyles, fetchStyleInfo } from '../lib/fetch.js';
 import { checkConflicts, promptComponentConflict, promptCssConflict } from '../lib/conflicts.js';
-import { installUtils, installGlobalsCss, installComponents, mergeTailwindConfig, installDependencies, installStyleMd, installManifest } from '../lib/install.js';
+import { installUtils, installGlobalsCss, installComponents, mergeTailwindConfig, installDependencies, installStyleMd, installManifest, installTailwindCss } from '../lib/install.js';
 import * as ui from '../lib/ui.js';
 export async function addCommand(styleName, options) {
     ui.banner();
@@ -66,19 +66,47 @@ export async function addCommand(styleName, options) {
         ui.info(`Using Tailwind v${tailwindVersion} (override)`);
     }
     else if (!tailwindVersion) {
-        // Prompt for version
+        // Tailwind not detected - offer to install it
+        console.log();
+        ui.warning('Tailwind CSS is not installed in this project.');
+        console.log();
+        const { installTailwind } = await inquirer.prompt([
+            {
+                type: 'confirm',
+                name: 'installTailwind',
+                message: 'Would you like to install Tailwind CSS?',
+                default: true
+            }
+        ]);
+        if (!installTailwind) {
+            ui.error('Token Atelier requires Tailwind CSS. Installation cancelled.');
+            process.exit(1);
+        }
+        // Ask which version to install
         const { version } = await inquirer.prompt([
             {
                 type: 'list',
                 name: 'version',
-                message: 'Could not detect Tailwind version. Which are you using?',
+                message: 'Which Tailwind version would you like to install?',
                 choices: [
-                    { name: 'Tailwind v4', value: '4' },
-                    { name: 'Tailwind v3', value: '3' }
+                    { name: 'Tailwind v3 (stable)', value: '3' },
+                    { name: 'Tailwind v4 (latest)', value: '4' }
                 ]
             }
         ]);
         tailwindVersion = version;
+        // Install Tailwind
+        const tailwindSpinner = ui.createSpinner('Installing Tailwind CSS...');
+        tailwindSpinner.start();
+        try {
+            await installTailwindCss(info, tailwindVersion);
+            tailwindSpinner.succeed('Tailwind CSS installed');
+        }
+        catch (error) {
+            tailwindSpinner.fail('Failed to install Tailwind CSS');
+            ui.error(error instanceof Error ? error.message : 'Unknown error');
+            process.exit(1);
+        }
     }
     // Check validation errors
     if (!validation.valid) {

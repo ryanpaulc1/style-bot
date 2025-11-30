@@ -32,6 +32,10 @@ export declare function mergeTailwindConfig(info: ProjectInfo, configPatch: stri
  */
 export declare function installDependencies(info: ProjectInfo, tailwindVersion: '3' | '4'): Promise<void>;
 /**
+ * Install Tailwind CSS and set up configuration
+ */
+export declare function installTailwindCss(info: ProjectInfo, version: '3' | '4'): Promise<void>;
+/**
  * Copy STYLE.md to project
  */
 export declare function installStyleMd(info: ProjectInfo, readme: string, styleName: string): Promise<void>;

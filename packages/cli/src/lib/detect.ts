@@ -341,10 +341,7 @@ export async function validateProject(info: ProjectInfo): Promise<ValidationResu
   const errors: string[] = [];
   const warnings: string[] = [];
 
-  // Check for Tailwind
-  if (!info.tailwindVersion) {
-    errors.push('Tailwind CSS not detected. Please install Tailwind CSS first.');
-  }
+  // Note: Tailwind detection is handled in add.ts with offer to install
 
   // Check for React (via package.json)
   const pkg = await readPackageJson(info.paths.root);

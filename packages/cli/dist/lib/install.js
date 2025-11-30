@@ -173,18 +173,89 @@ export async function installDependencies(info, tailwindVersion) {
 /**
  * Get the install command for a package manager
  */
-function getInstallCommand(pm, packages) {
+function getInstallCommand(pm, packages, dev = false) {
     const pkgList = packages.join(' ');
     switch (pm) {
         case 'yarn':
-            return `yarn add ${pkgList}`;
+            return `yarn add ${dev ? '-D ' : ''}${pkgList}`;
         case 'pnpm':
-            return `pnpm add ${pkgList}`;
+            return `pnpm add ${dev ? '-D ' : ''}${pkgList}`;
         case 'bun':
-            return `bun add ${pkgList}`;
+            return `bun add ${dev ? '-d ' : ''}${pkgList}`;
         case 'npm':
         default:
-            return `npm install ${pkgList}`;
+            return `npm install ${dev ? '-D ' : ''}${pkgList}`;
+    }
+}
+/**
+ * Install Tailwind CSS and set up configuration
+ */
+export async function installTailwindCss(info, version) {
+    if (version === '4') {
+        // Install Tailwind v4 packages
+        const deps = ['tailwindcss', '@tailwindcss/postcss', 'postcss'];
+        const installCmd = getInstallCommand(info.packageManager, deps, true);
+        execSync(installCmd, { cwd: info.paths.root, stdio: 'inherit' });
+        // Create postcss.config.js
+        const postcssConfig = `export default {
+  plugins: ['@tailwindcss/postcss']
+}
+`;
+        await fs.writeFile(path.join(info.paths.root, 'postcss.config.js'), postcssConfig);
+        // Create or update main CSS file with Tailwind import
+        const cssPath = path.join(info.paths.root, 'src', 'index.css');
+        await fs.ensureDir(path.dirname(cssPath));
+        if (await fs.pathExists(cssPath)) {
+            const existing = await fs.readFile(cssPath, 'utf-8');
+            if (!existing.includes('@import "tailwindcss"')) {
+                await fs.writeFile(cssPath, `@import "tailwindcss";\n\n${existing}`);
+            }
+        }
+        else {
+            await fs.writeFile(cssPath, '@import "tailwindcss";\n');
+        }
+    }
+    else {
+        // Install Tailwind v3 packages
+        const deps = ['tailwindcss', 'postcss', 'autoprefixer'];
+        const installCmd = getInstallCommand(info.packageManager, deps, true);
+        execSync(installCmd, { cwd: info.paths.root, stdio: 'inherit' });
+        // Create tailwind.config.js
+        const tailwindConfig = `/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  darkMode: 'class',
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+`;
+        await fs.writeFile(path.join(info.paths.root, 'tailwind.config.js'), tailwindConfig);
+        // Create postcss.config.js
+        const postcssConfig = `export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+`;
+        await fs.writeFile(path.join(info.paths.root, 'postcss.config.js'), postcssConfig);
+        // Create or update main CSS file with Tailwind directives
+        const cssPath = path.join(info.paths.root, 'src', 'index.css');
+        await fs.ensureDir(path.dirname(cssPath));
+        if (await fs.pathExists(cssPath)) {
+            const existing = await fs.readFile(cssPath, 'utf-8');
+            if (!existing.includes('@tailwind')) {
+                await fs.writeFile(cssPath, `@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n${existing}`);
+            }
+        }
+        else {
+            await fs.writeFile(cssPath, '@tailwind base;\n@tailwind components;\n@tailwind utilities;\n');
+        }
     }
 }
 /**
