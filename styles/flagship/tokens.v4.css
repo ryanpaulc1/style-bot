@@ -1,0 +1,131 @@
+/* Flagship - Token Values (Tailwind v4) */
+/* Premium dark theme with violet accents and polished gradients */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* Dark mode variables (primary mode) */
+:root {
+  /* Background & Foreground */
+  --background: hsl(240 20% 4%);
+  --foreground: hsl(0 0% 98%);
+
+  /* Card */
+  --card: hsl(240 17% 8%);
+  --card-foreground: hsl(0 0% 98%);
+
+  /* Popover */
+  --popover: hsl(240 17% 8%);
+  --popover-foreground: hsl(0 0% 98%);
+
+  /* Primary - Violet */
+  --primary: hsl(262 83% 66%);
+  --primary-foreground: hsl(0 0% 100%);
+
+  /* Secondary - Muted Violet */
+  --secondary: hsl(262 30% 25%);
+  --secondary-foreground: hsl(262 83% 76%);
+
+  /* Accent - Bright Violet */
+  --accent: hsl(262 83% 76%);
+  --accent-foreground: hsl(240 20% 4%);
+
+  /* Muted */
+  --muted: hsl(240 10% 12%);
+  --muted-foreground: hsl(240 4% 46%);
+
+  /* Destructive */
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+
+  /* Border & Input */
+  --border: hsl(240 4% 16%);
+  --input: hsl(240 4% 16%);
+  --ring: hsl(262 83% 66%);
+
+  /* Border Radius */
+  --radius: 0.75rem;
+
+  /* Font Families */
+  --font-family-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-family-heading: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-family-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Button Gradients */
+  --button-gradient: linear-gradient(135deg, hsl(262 83% 66%) 0%, hsl(263 85% 58%) 100%);
+  --button-gradient-hover: linear-gradient(135deg, hsl(262 83% 76%) 0%, hsl(262 83% 66%) 100%);
+}
+
+/* Theme token mappings for Tailwind v4 */
+@theme inline {
+  /* Colors - map CSS variables to Tailwind tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Border Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Font Families */
+  --font-sans: var(--font-family-sans);
+  --font-heading: var(--font-family-heading);
+  --font-mono: var(--font-family-mono);
+
+  /* Text Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.2;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+  --leading-loose: 2;
+
+  /* Letter Spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}

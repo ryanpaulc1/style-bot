@@ -1,0 +1,40 @@
+{
+  "name": "warmth",
+  "version": "1.0.0",
+  "title": "Warmth",
+  "description": "Soft, approachable light theme with terracotta tones. Perfect for wellness, lifestyle, and consumer applications. Features warm cream backgrounds with terracotta and olive green accents.",
+
+  "access": "premium",
+  "price": {
+    "single": 39,
+    "currency": "USD"
+  },
+  "preview_url": "https://tokenatelier.dev/preview/warmth",
+
+  "tokens": {
+    "colors": {
+      "background": { "light": "hsl(36 100% 98%)" },
+      "foreground": { "light": "hsl(34 8% 16%)" },
+      "primary": { "value": "hsl(12 68% 63%)", "name": "Terracotta" },
+      "secondary": { "value": "hsl(34 30% 90%)", "name": "Warm Sand" },
+      "accent": { "value": "hsl(93 53% 36%)", "name": "Olive Green" },
+      "muted": { "light": "hsl(34 20% 94%)" },
+      "destructive": { "value": "hsl(0 61% 48%)", "name": "Error Red" }
+    },
+    "typography": {
+      "fontFamily": {
+        "sans": "Outfit, ui-sans-serif, system-ui, sans-serif",
+        "heading": "Outfit, ui-sans-serif, system-ui, sans-serif",
+        "mono": "JetBrains Mono, ui-monospace, monospace"
+      }
+    },
+    "radius": {
+      "sm": "0.625rem",
+      "md": "1rem",
+      "lg": "1.25rem",
+      "default": "1.25rem"
+    }
+  },
+
+  "mode": "light"
+}

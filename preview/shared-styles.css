@@ -1,0 +1,15 @@
+/* Token Atelier - Preview App Styles */
+
+/* All @import statements must come first */
+@import "../shared/base.v4.css";
+@import "../styles/midnight-aurora/tokens.v4.css";
+
+/* Tell Tailwind to scan shared components for class names */
+@source "../shared/components/*.tsx";
+@source "./src/**/*.tsx";
+
+/*
+ * Note: Style tokens are also loaded dynamically by the StyleLoader component.
+ * This allows switching between styles without rebuilding.
+ * The static import above ensures Tailwind generates all utility classes.
+ */

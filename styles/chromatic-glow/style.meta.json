@@ -1,0 +1,40 @@
+{
+  "name": "chromatic-glow",
+  "version": "1.0.0",
+  "title": "Chromatic Glow",
+  "description": "Dreamy gradients with pink, purple, and mint accents. Playful and modern aesthetic perfect for creative portfolios, music apps, and Gen-Z focused products. Features soft, pill-shaped components with tri-color gradient buttons.",
+
+  "access": "premium",
+  "price": {
+    "single": 39,
+    "currency": "USD"
+  },
+  "preview_url": "https://tokenatelier.dev/preview/chromatic-glow",
+
+  "tokens": {
+    "colors": {
+      "background": { "dark": "hsl(320 10% 9%)" },
+      "foreground": { "dark": "hsl(20 23% 97%)" },
+      "primary": { "value": "hsl(262 86% 76%)", "name": "Purple" },
+      "secondary": { "value": "hsl(336 70% 69%)", "name": "Pink" },
+      "accent": { "value": "hsl(165 52% 66%)", "name": "Mint" },
+      "muted": { "dark": "hsl(320 8% 15%)" },
+      "destructive": { "value": "hsl(336 70% 69%)", "name": "Error Pink" }
+    },
+    "typography": {
+      "fontFamily": {
+        "sans": "Nunito, ui-sans-serif, system-ui, sans-serif",
+        "heading": "Nunito, ui-sans-serif, system-ui, sans-serif",
+        "mono": "JetBrains Mono, ui-monospace, monospace"
+      }
+    },
+    "radius": {
+      "sm": "0.75rem",
+      "md": "1.125rem",
+      "lg": "1.5rem",
+      "default": "1.5rem"
+    }
+  },
+
+  "mode": "dark"
+}

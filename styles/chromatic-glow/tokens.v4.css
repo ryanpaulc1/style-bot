@@ -1,0 +1,131 @@
+/* Chromatic Glow - Token Values (Tailwind v4) */
+/* Dreamy gradients with pink, purple, and mint accents */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* Dark mode variables (primary mode) */
+:root {
+  /* Background & Foreground - Warm Dark */
+  --background: hsl(320 10% 9%);
+  --foreground: hsl(20 23% 97%);
+
+  /* Card - Warm Light Surface */
+  --card: hsl(320 10% 13%);
+  --card-foreground: hsl(20 23% 97%);
+
+  /* Popover */
+  --popover: hsl(320 10% 13%);
+  --popover-foreground: hsl(20 23% 97%);
+
+  /* Primary - Purple */
+  --primary: hsl(262 86% 76%);
+  --primary-foreground: hsl(320 10% 9%);
+
+  /* Secondary - Pink */
+  --secondary: hsl(336 70% 69%);
+  --secondary-foreground: hsl(320 10% 9%);
+
+  /* Accent - Mint */
+  --accent: hsl(165 52% 66%);
+  --accent-foreground: hsl(320 10% 9%);
+
+  /* Muted */
+  --muted: hsl(320 8% 15%);
+  --muted-foreground: hsl(0 3% 59%);
+
+  /* Destructive */
+  --destructive: hsl(336 70% 69%);
+  --destructive-foreground: hsl(320 10% 9%);
+
+  /* Border & Input */
+  --border: hsl(262 30% 25%);
+  --input: hsl(320 8% 15%);
+  --ring: hsl(262 86% 76%);
+
+  /* Border Radius - Very Rounded, pill-like */
+  --radius: 1.5rem;
+
+  /* Font Families */
+  --font-family-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-family-heading: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-family-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Button Gradients - Tri-color */
+  --button-gradient: linear-gradient(135deg, hsl(336 70% 69%) 0%, hsl(262 86% 76%) 50%, hsl(165 52% 66%) 100%);
+  --button-gradient-hover: linear-gradient(135deg, hsl(336 75% 74%) 0%, hsl(262 88% 80%) 50%, hsl(165 55% 72%) 100%);
+}
+
+/* Theme token mappings for Tailwind v4 */
+@theme inline {
+  /* Colors - map CSS variables to Tailwind tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Border Radius - Very rounded */
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+
+  /* Font Families */
+  --font-sans: var(--font-family-sans);
+  --font-heading: var(--font-family-heading);
+  --font-mono: var(--font-family-mono);
+
+  /* Text Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3rem;
+  --text-5xl: 3.75rem;
+  --text-6xl: 4.5rem;
+
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.2;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+  --leading-loose: 2;
+
+  /* Letter Spacing */
+  --tracking-tighter: -0.04em;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.02em;
+  --tracking-wider: 0.04em;
+  --tracking-widest: 0.08em;
+
+  /* Animations - Smooth, dreamy */
+  --animate-accordion-down: accordion-down 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-accordion-up: accordion-up 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}

@@ -1,0 +1,76 @@
+/* Flagship - Token Values (Tailwind v3) */
+/* Premium dark theme with violet accents and polished gradients */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+@layer base {
+  :root {
+    /* Background & Foreground */
+    --background: 240 20% 4%;
+    --foreground: 0 0% 98%;
+
+    /* Card */
+    --card: 240 17% 8%;
+    --card-foreground: 0 0% 98%;
+
+    /* Popover */
+    --popover: 240 17% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Primary - Violet */
+    --primary: 262 83% 66%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Muted Violet */
+    --secondary: 262 30% 25%;
+    --secondary-foreground: 262 83% 76%;
+
+    /* Accent - Bright Violet */
+    --accent: 262 83% 76%;
+    --accent-foreground: 240 20% 4%;
+
+    /* Muted */
+    --muted: 240 10% 12%;
+    --muted-foreground: 240 4% 46%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Border & Input */
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 262 83% 66%;
+
+    /* Border Radius */
+    --radius: 0.75rem;
+
+    /* Text Sizes */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    --text-6xl: 3.75rem;
+
+    /* Line Heights */
+    --leading-none: 1;
+    --leading-tight: 1.2;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.7;
+    --leading-loose: 2;
+
+    /* Letter Spacing */
+    --tracking-tighter: -0.05em;
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0em;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
+  }
+}

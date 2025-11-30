@@ -1,0 +1,76 @@
+/* Terminal - Token Values (Tailwind v3) */
+/* Hacker CLI aesthetic with phosphor green and CRT glow */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+@layer base {
+  :root {
+    /* Background & Foreground - CRT Black with Phosphor Green */
+    --background: 0 0% 5%;
+    --foreground: 144 100% 50%;
+
+    /* Card */
+    --card: 0 0% 4%;
+    --card-foreground: 144 100% 50%;
+
+    /* Popover */
+    --popover: 0 0% 4%;
+    --popover-foreground: 144 100% 50%;
+
+    /* Primary - Phosphor Green */
+    --primary: 144 100% 50%;
+    --primary-foreground: 0 0% 4%;
+
+    /* Secondary - Dimmer Green */
+    --secondary: 144 100% 20%;
+    --secondary-foreground: 144 100% 50%;
+
+    /* Accent - Bright Green */
+    --accent: 144 100% 40%;
+    --accent-foreground: 0 0% 4%;
+
+    /* Muted */
+    --muted: 0 0% 8%;
+    --muted-foreground: 151 100% 30%;
+
+    /* Destructive */
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 4%;
+
+    /* Border & Input */
+    --border: 0 0% 10%;
+    --input: 0 0% 8%;
+    --ring: 144 100% 50%;
+
+    /* Border Radius */
+    --radius: 0.25rem;
+
+    /* Text Sizes */
+    --text-xs: 0.6875rem;
+    --text-sm: 0.8125rem;
+    --text-base: 0.875rem;
+    --text-lg: 1rem;
+    --text-xl: 1.125rem;
+    --text-2xl: 1.25rem;
+    --text-3xl: 1.5rem;
+    --text-4xl: 1.875rem;
+    --text-5xl: 2.25rem;
+    --text-6xl: 3rem;
+
+    /* Line Heights */
+    --leading-none: 1;
+    --leading-tight: 1.3;
+    --leading-snug: 1.4;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.6;
+    --leading-loose: 1.8;
+
+    /* Letter Spacing */
+    --tracking-tighter: -0.02em;
+    --tracking-tight: -0.01em;
+    --tracking-normal: 0em;
+    --tracking-wide: 0.02em;
+    --tracking-wider: 0.04em;
+    --tracking-widest: 0.08em;
+  }
+}

@@ -16,22 +16,65 @@ Token Atelier provides complete style guides that include:
 | Style | Description | Access |
 |-------|-------------|--------|
 | **Midnight Aurora** | Dark theme with aurora-inspired accents (teal, purple, pink). Perfect for dashboards and dev tools. | Premium |
-| *Starter Light* | Clean, minimal light theme | Free (coming soon) |
-| *More styles* | Corporate, Brutalist, Soft Pastels, and more | Coming soon |
+| **Flagship** | Premium dark theme with violet accents and polished gradients. Enterprise dashboards and SaaS. | Premium |
+| **Terminal** | Hacker CLI aesthetic with phosphor green and CRT glow. Developer tools and cyberpunk apps. | Premium |
+| **Warmth** | Soft light theme with terracotta tones. Wellness, lifestyle, and consumer applications. | Premium |
+| **Chromatic Glow** | Dreamy gradients with pink, purple, and mint. Creative portfolios and Gen-Z products. | Premium |
 
 ## Installation
 
-### Using AI Tools (Recommended)
+### CLI (Recommended)
+
+The fastest way to install a style:
+
+```bash
+npx token-atelier add midnight-aurora
+```
+
+The CLI will:
+1. Detect your project configuration (framework, Tailwind version)
+2. Check for existing components and handle conflicts
+3. Copy all components and CSS tokens
+4. Merge Tailwind config (v3) or compose CSS (v4)
+5. Install npm dependencies
+
+#### CLI Commands
+
+```bash
+# Install a style
+npx token-atelier add <style-name>
+
+# List available styles
+npx token-atelier list
+
+# Check project compatibility
+npx token-atelier doctor
+
+# Authenticate for premium styles
+npx token-atelier auth
+```
+
+#### CLI Options
+
+```bash
+npx token-atelier add midnight-aurora [options]
+
+Options:
+  -t, --tailwind <version>  Force Tailwind version (3 or 4)
+  --target <dir>            Target directory (default: current)
+  --skip-deps               Skip npm dependency installation
+  --dry-run                 Preview changes without writing
+  -y, --yes                 Skip confirmation prompts
+  -f, --force               Overwrite existing files without prompting
+```
+
+### Using AI Tools
 
 Tell your AI assistant:
 
 > "Install the Token Atelier midnight-aurora style from https://github.com/token-atelier/token-atelier into my React project"
 
-The AI will:
-1. Read the manifest.json
-2. Copy files to the correct locations
-3. Update your Tailwind config
-4. Install npm dependencies
+The AI will read the `manifest.json` and follow structured installation instructions.
 
 ### Manual Installation
 
@@ -44,20 +87,31 @@ The AI will:
 ```
 token-atelier/
 ├── README.md                    # This file
+├── packages/
+│   └── cli/                     # CLI tool (npx token-atelier)
+│       ├── src/
+│       │   ├── commands/        # add, list, doctor, auth
+│       │   └── lib/             # detect, install, conflicts
+│       └── package.json
+├── shared/
+│   ├── components/              # 22 React components (shared across styles)
+│   ├── lib/utils.ts             # cn() utility function
+│   ├── base.v3.css              # Base CSS for Tailwind v3
+│   ├── base.v4.css              # Base CSS for Tailwind v4
+│   └── manifest.template.json   # Shared manifest template
 ├── styles/
-│   └── midnight-aurora/         # Style package
-│       ├── manifest.json        # AI-readable installation spec
-│       ├── STYLE.md            # Human-readable guide
-│       ├── globals.v3.css      # CSS for Tailwind v3
-│       ├── globals.v4.css      # CSS for Tailwind v4
-│       ├── tailwind.config.patch.js  # Config (v3 only)
-│       ├── components/         # Styled React components
-│       │   ├── button.tsx
-│       │   ├── card.tsx
-│       │   ├── showcase.tsx    # Component preview (add as route)
-│       │   └── ...
-│       └── lib/
-│           └── utils.ts        # cn() utility
+│   ├── midnight-aurora/
+│   │   ├── manifest.json        # AI-readable installation spec
+│   │   ├── STYLE.md             # Human-readable guide
+│   │   ├── style.meta.json      # Style metadata
+│   │   ├── tokens.v3.css        # CSS tokens for Tailwind v3
+│   │   └── tokens.v4.css        # CSS tokens for Tailwind v4
+│   ├── flagship/
+│   ├── terminal/
+│   ├── warmth/
+│   └── chromatic-glow/
+└── scripts/
+    └── build-manifests.js       # Composes template + metadata → manifest
 ```
 
 ## How It Works
@@ -116,11 +170,13 @@ The manifest.json includes version detection instructions so AI assistants can a
 
 ## Roadmap
 
+- [x] CLI tool (`npx token-atelier add`)
+- [x] 5 premium styles (Midnight Aurora, Flagship, Terminal, Warmth, Chromatic Glow)
+- [x] Tailwind v3 and v4 support
+- [x] AI-readable manifests for automated installation
 - [ ] Free "Starter Light" style
-- [ ] CLI tool (`npx token-atelier install`)
 - [ ] MCP Server for native AI integration
 - [ ] Web catalog at tokenatelier.dev
-- [ ] More style options
 - [ ] Figma integration
 
 ## Support

@@ -1,0 +1,76 @@
+/* Chromatic Glow - Token Values (Tailwind v3) */
+/* Dreamy gradients with pink, purple, and mint accents */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&family=JetBrains+Mono:wght@400;700&display=swap');
+
+@layer base {
+  :root {
+    /* Background & Foreground - Warm Dark */
+    --background: 320 10% 9%;
+    --foreground: 20 23% 97%;
+
+    /* Card - Warm Light Surface */
+    --card: 320 10% 13%;
+    --card-foreground: 20 23% 97%;
+
+    /* Popover */
+    --popover: 320 10% 13%;
+    --popover-foreground: 20 23% 97%;
+
+    /* Primary - Purple */
+    --primary: 262 86% 76%;
+    --primary-foreground: 320 10% 9%;
+
+    /* Secondary - Pink */
+    --secondary: 336 70% 69%;
+    --secondary-foreground: 320 10% 9%;
+
+    /* Accent - Mint */
+    --accent: 165 52% 66%;
+    --accent-foreground: 320 10% 9%;
+
+    /* Muted */
+    --muted: 320 8% 15%;
+    --muted-foreground: 0 3% 59%;
+
+    /* Destructive */
+    --destructive: 336 70% 69%;
+    --destructive-foreground: 320 10% 9%;
+
+    /* Border & Input */
+    --border: 262 30% 25%;
+    --input: 320 8% 15%;
+    --ring: 262 86% 76%;
+
+    /* Border Radius */
+    --radius: 1.5rem;
+
+    /* Text Sizes */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.375rem;
+    --text-2xl: 1.75rem;
+    --text-3xl: 2.25rem;
+    --text-4xl: 3rem;
+    --text-5xl: 3.75rem;
+    --text-6xl: 4.5rem;
+
+    /* Line Heights */
+    --leading-none: 1;
+    --leading-tight: 1.2;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.7;
+    --leading-loose: 2;
+
+    /* Letter Spacing */
+    --tracking-tighter: -0.04em;
+    --tracking-tight: -0.02em;
+    --tracking-normal: 0em;
+    --tracking-wide: 0.02em;
+    --tracking-wider: 0.04em;
+    --tracking-widest: 0.08em;
+  }
+}

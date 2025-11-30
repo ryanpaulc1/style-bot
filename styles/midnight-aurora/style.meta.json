@@ -1,0 +1,40 @@
+{
+  "name": "midnight-aurora",
+  "version": "1.1.0",
+  "title": "Midnight Aurora",
+  "description": "A dark, elegant theme with aurora-inspired accent colors. Features deep navy backgrounds with vibrant teal, purple, and pink accents. Perfect for dashboards, developer tools, and modern SaaS applications.",
+
+  "access": "premium",
+  "price": {
+    "single": 39,
+    "currency": "USD"
+  },
+  "preview_url": "https://tokenatelier.dev/preview/midnight-aurora",
+
+  "tokens": {
+    "colors": {
+      "background": { "dark": "hsl(222 47% 11%)", "light": "hsl(0 0% 100%)" },
+      "foreground": { "dark": "hsl(210 40% 98%)", "light": "hsl(222 47% 11%)" },
+      "primary": { "value": "hsl(199 89% 48%)", "name": "Aurora Teal" },
+      "secondary": { "value": "hsl(280 65% 60%)", "name": "Aurora Purple" },
+      "accent": { "value": "hsl(330 80% 60%)", "name": "Aurora Pink" },
+      "muted": { "dark": "hsl(217 33% 17%)", "light": "hsl(220 14% 96%)" },
+      "destructive": { "value": "hsl(0 62% 50%)", "name": "Error Red" }
+    },
+    "typography": {
+      "fontFamily": {
+        "sans": "Work Sans, ui-sans-serif, system-ui, sans-serif",
+        "heading": "Aboreto, ui-serif, Georgia, serif",
+        "mono": "JetBrains Mono, ui-monospace, monospace"
+      }
+    },
+    "radius": {
+      "sm": "0.25rem",
+      "md": "0.375rem",
+      "lg": "0.5rem",
+      "default": "0.5rem"
+    }
+  },
+
+  "mode": "both"
+}

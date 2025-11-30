@@ -1,0 +1,42 @@
+/* Token Atelier - Shared Base Styles (Tailwind v4) */
+
+@import "tailwindcss";
+
+/* Dark mode custom variant for class-based switching */
+@custom-variant dark (&:is(.dark *));
+
+/* Keyframe animations */
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+/* Base styles */
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-family-sans);
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+}
+
+/* Custom button background with gradient support */
+.bg-button-primary {
+  background: var(--button-gradient, var(--primary));
+}
+
+.bg-button-primary:hover {
+  background: var(--button-gradient-hover, color-mix(in srgb, var(--primary) 90%, black));
+}

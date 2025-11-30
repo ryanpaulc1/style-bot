@@ -1,0 +1,54 @@
+{
+  "name": "token-atelier",
+  "version": "1.0.0",
+  "description": "CLI tool for installing Token Atelier style guides into React + Tailwind projects",
+  "author": "Token Atelier",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "token-atelier": "./bin/token-atelier.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node ./dist/index.js",
+    "lint": "eslint src --ext .ts"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "inquirer": "^9.2.23",
+    "ora": "^8.0.1",
+    "node-fetch": "^3.3.2",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.4.5"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.14.2",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "tailwind",
+    "react",
+    "ui",
+    "components",
+    "style-guide",
+    "design-system",
+    "token-atelier"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/token-atelier/token-atelier"
+  },
+  "homepage": "https://tokenatelier.dev"
+}

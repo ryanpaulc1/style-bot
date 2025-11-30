@@ -2,9 +2,12 @@
   "$schema": "https://tokenatelier.dev/schema/manifest.json",
   "author": "Token Atelier",
   "license": "MIT",
+
   "ai_instructions": {
     "critical_warning": "STOP. Do NOT summarize this style guide. Do NOT extract only color tokens. Do NOT manually apply styles to existing components. You MUST complete the FULL installation process below. Partial installation will result in broken components, missing styles, and TypeScript errors.",
-    "what_this_is": "Midnight Aurora is a COMPLETE COMPONENT LIBRARY (not just colors). It includes 20+ pre-styled React components built on Radix UI. Installation requires copying ALL components, utilities, CSS, and dependencies.",
+
+    "what_this_is": "{{title}} is a COMPLETE COMPONENT LIBRARY (not just colors). It includes 20+ pre-styled React components built on Radix UI. Installation requires copying ALL components, utilities, CSS, and dependencies.",
+
     "pre_flight_checklist": {
       "description": "You MUST verify ALL of the following BEFORE starting installation:",
       "required_checks": [
@@ -20,6 +23,7 @@
         "If no React framework detected, STOP and confirm with user"
       ]
     },
+
     "version_detection": {
       "description": "Detect the target project's Tailwind version to choose correct files",
       "instructions": [
@@ -31,6 +35,7 @@
         "When in doubt, ASK the user which Tailwind version they are using"
       ]
     },
+
     "installation_v3": {
       "description": "Installation steps for Tailwind CSS v3.x projects. Execute ALL steps in EXACT order.",
       "steps": [
@@ -90,18 +95,14 @@
           "step": 6,
           "action": "VERIFY globals.css is imported in app entry point",
           "critical": true,
-          "targets": [
-            "app/layout.tsx",
-            "pages/_app.tsx",
-            "src/main.tsx",
-            "src/index.tsx"
-          ],
+          "targets": ["app/layout.tsx", "pages/_app.tsx", "src/main.tsx", "src/index.tsx"],
           "why": "CSS variables must be loaded for any styles to apply.",
           "add_import": "import '@/styles/globals.css' (or appropriate path)",
           "verification": "Entry point file contains import statement for globals.css"
         }
       ]
     },
+
     "installation_v4": {
       "description": "Installation steps for Tailwind CSS v4.x projects. Execute ALL steps in EXACT order.",
       "steps": [
@@ -155,12 +156,7 @@
           "step": 6,
           "action": "VERIFY globals.css is imported in app entry point",
           "critical": true,
-          "targets": [
-            "app/layout.tsx",
-            "pages/_app.tsx",
-            "src/main.tsx",
-            "src/index.tsx"
-          ],
+          "targets": ["app/layout.tsx", "pages/_app.tsx", "src/main.tsx", "src/index.tsx"],
           "why": "CSS variables and @theme block must be loaded for styles to apply.",
           "add_import": "import '@/styles/globals.css' (or appropriate path)",
           "verification": "Entry point file contains import statement for globals.css"
@@ -168,6 +164,7 @@
       ],
       "note": "Tailwind v4 does NOT require a tailwind.config.js file. All theme configuration is in the CSS file via @theme inline."
     },
+
     "common_mistakes": {
       "description": "AI assistants frequently make these errors. You MUST avoid ALL of them:",
       "mistakes": [
@@ -203,6 +200,7 @@
         }
       ]
     },
+
     "post_installation_verification": {
       "description": "After completing ALL steps, verify the installation succeeded:",
       "checks": [
@@ -240,34 +238,24 @@
       "success_message": "Installation complete! Suggest user add a route for <Showcase /> component to preview all styled components.",
       "failure_action": "If ANY check fails, identify which step was missed and complete it before declaring success."
     },
+
     "migration": {
       "optional": true,
-      "prompt_user": "After installation completes, ASK the user: 'Would you like me to migrate your existing components to use the Midnight Aurora style tokens and components? This will convert inline styles to Tailwind classes and replace custom UI implementations with the pre-styled components. Your component logic will not be changed.'",
+      "prompt_user": "After installation completes, ASK the user: 'Would you like me to migrate your existing components to use the {{title}} style tokens and components? This will convert inline styles to Tailwind classes and replace custom UI implementations with the pre-styled components. Your component logic will not be changed.'",
+
       "scope": {
-        "include": [
-          "src/components/",
-          "src/pages/",
-          "app/"
-        ],
-        "exclude": [
-          "src/components/ui/"
-        ],
+        "include": ["src/components/", "src/pages/", "app/"],
+        "exclude": ["src/components/ui/"],
         "description": "Migrate files in these directories, but NOT the installed UI library"
       },
+
       "component_mappings": {
         "description": "Replace custom implementations with UI library components",
         "mappings": [
           {
             "pattern": "Custom button elements with onClick handlers and styled backgrounds",
             "replace_with": "<Button> from @/components/ui/button",
-            "variants": [
-              "default",
-              "secondary",
-              "destructive",
-              "outline",
-              "ghost",
-              "link"
-            ]
+            "variants": ["default", "secondary", "destructive", "outline", "ghost", "link"]
           },
           {
             "pattern": "Custom card/container divs with shadows and rounded corners",
@@ -303,6 +291,7 @@
           }
         ]
       },
+
       "instructions": {
         "steps": [
           "1. Complete standard installation first (all 6 steps)",
@@ -322,16 +311,17 @@
         ]
       }
     },
+
     "showcase_usage": "The Showcase component renders all UI components for preview. User should create a route (e.g., app/showcase/page.tsx) that imports and renders <Showcase /> from @/components/ui/showcase. This provides live preview with automatic CSS sync when editing styles.",
+
     "auth_required": true,
     "auth_note": "This is a premium style. User needs a Token Atelier API key. Check for .tokenatelier.json config in project root or home directory, or ask user for their API key."
   },
+
   "compatibility": {
     "tailwind": {
       "v3": {
-        "versions": [
-          "3.x"
-        ],
+        "versions": ["3.x"],
         "files": {
           "globals": "globals.v3.css",
           "config": "tailwind.config.patch.js"
@@ -339,27 +329,19 @@
         "notes": "Requires tailwindcss as PostCSS plugin. Uses JavaScript config file."
       },
       "v4": {
-        "versions": [
-          "4.x"
-        ],
+        "versions": ["4.x"],
         "files": {
           "globals": "globals.v4.css",
           "config": null
         },
         "notes": "Requires @tailwindcss/postcss package. No JS config needed - uses @theme inline in CSS.",
-        "additional_dependencies": [
-          "@tailwindcss/postcss"
-        ]
+        "additional_dependencies": ["@tailwindcss/postcss"]
       }
     },
     "react": ">=18.0.0",
-    "frameworks": [
-      "nextjs",
-      "vite",
-      "remix",
-      "cra"
-    ]
+    "frameworks": ["nextjs", "vite", "remix", "cra"]
   },
+
   "files": {
     "utils": {
       "source": "../../shared/lib/utils.ts",
@@ -376,27 +358,21 @@
     },
     "tokens_v3": {
       "source": "./tokens.v3.css",
-      "description": "Midnight Aurora token values for Tailwind v3"
+      "description": "{{title}} token values for Tailwind v3"
     },
     "tokens_v4": {
       "source": "./tokens.v4.css",
-      "description": "Midnight Aurora token values for Tailwind v4 (includes @theme inline)"
+      "description": "{{title}} token values for Tailwind v4 (includes @theme inline)"
     },
     "globals_v3": {
-      "compose": [
-        "base_v3",
-        "tokens_v3"
-      ],
+      "compose": ["base_v3", "tokens_v3"],
       "target": "src/styles/globals.css",
       "merge": true,
       "tailwind_version": "3.x",
       "description": "Combine base.v3.css + tokens.v3.css for complete Tailwind v3 CSS"
     },
     "globals_v4": {
-      "compose": [
-        "base_v4",
-        "tokens_v4"
-      ],
+      "compose": ["base_v4", "tokens_v4"],
       "target": "src/styles/globals.css",
       "merge": true,
       "tailwind_version": "4.x",
@@ -415,6 +391,7 @@
       "description": "All styled React components (compatible with both v3 and v4)"
     }
   },
+
   "dependencies": {
     "npm": [
       "@radix-ui/react-slot",
@@ -440,6 +417,7 @@
       "@tailwindcss/postcss"
     ]
   },
+
   "components": [
     {
       "name": "button",
@@ -569,60 +547,5 @@
       "optional": true,
       "usage_note": "Import and render as a page route (e.g., /showcase) to preview all components with your current styles"
     }
-  ],
-  "name": "midnight-aurora",
-  "version": "1.1.0",
-  "title": "Midnight Aurora",
-  "description": "A dark, elegant theme with aurora-inspired accent colors. Features deep navy backgrounds with vibrant teal, purple, and pink accents. Perfect for dashboards, developer tools, and modern SaaS applications.",
-  "access": "premium",
-  "price": {
-    "single": 39,
-    "currency": "USD"
-  },
-  "preview_url": "https://tokenatelier.dev/preview/midnight-aurora",
-  "tokens": {
-    "colors": {
-      "background": {
-        "dark": "hsl(222 47% 11%)",
-        "light": "hsl(0 0% 100%)"
-      },
-      "foreground": {
-        "dark": "hsl(210 40% 98%)",
-        "light": "hsl(222 47% 11%)"
-      },
-      "primary": {
-        "value": "hsl(199 89% 48%)",
-        "name": "Aurora Teal"
-      },
-      "secondary": {
-        "value": "hsl(280 65% 60%)",
-        "name": "Aurora Purple"
-      },
-      "accent": {
-        "value": "hsl(330 80% 60%)",
-        "name": "Aurora Pink"
-      },
-      "muted": {
-        "dark": "hsl(217 33% 17%)",
-        "light": "hsl(220 14% 96%)"
-      },
-      "destructive": {
-        "value": "hsl(0 62% 50%)",
-        "name": "Error Red"
-      }
-    },
-    "typography": {
-      "fontFamily": {
-        "sans": "Work Sans, ui-sans-serif, system-ui, sans-serif",
-        "heading": "Aboreto, ui-serif, Georgia, serif",
-        "mono": "JetBrains Mono, ui-monospace, monospace"
-      }
-    },
-    "radius": {
-      "sm": "0.25rem",
-      "md": "0.375rem",
-      "lg": "0.5rem",
-      "default": "0.5rem"
-    }
-  }
+  ]
 }

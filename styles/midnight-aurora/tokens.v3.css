@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+/* Midnight Aurora - Token Values (Tailwind v3) */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 @layer base {
   :root {
@@ -45,6 +43,34 @@
 
     /* Border Radius */
     --radius: 0.5rem;
+
+    /* Text Sizes */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    --text-6xl: 3.75rem;
+
+    /* Line Heights */
+    --leading-none: 1;
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+
+    /* Letter Spacing */
+    --tracking-tighter: -0.05em;
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0em;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
   }
 
   .dark {
@@ -84,20 +110,5 @@
     --border: 217 33% 20%;
     --input: 217 33% 20%;
     --ring: 199 89% 48%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground font-sans;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
   }
 }

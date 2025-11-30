@@ -1,0 +1,40 @@
+{
+  "name": "terminal",
+  "version": "1.0.0",
+  "title": "Terminal",
+  "description": "Hacker CLI aesthetic with phosphor green and CRT glow. Perfect for developer tools, coding platforms, and cyberpunk-inspired applications. Monospace everything with sharp, minimal styling.",
+
+  "access": "premium",
+  "price": {
+    "single": 39,
+    "currency": "USD"
+  },
+  "preview_url": "https://tokenatelier.dev/preview/terminal",
+
+  "tokens": {
+    "colors": {
+      "background": { "dark": "hsl(0 0% 5%)" },
+      "foreground": { "dark": "hsl(144 100% 50%)" },
+      "primary": { "value": "hsl(144 100% 50%)", "name": "Phosphor Green" },
+      "secondary": { "value": "hsl(144 100% 20%)", "name": "Dimmer Green" },
+      "accent": { "value": "hsl(144 100% 40%)", "name": "Bright Green" },
+      "muted": { "dark": "hsl(0 0% 8%)" },
+      "destructive": { "value": "hsl(0 100% 50%)", "name": "Error Red" }
+    },
+    "typography": {
+      "fontFamily": {
+        "sans": "JetBrains Mono, ui-monospace, monospace",
+        "heading": "JetBrains Mono, ui-monospace, monospace",
+        "mono": "JetBrains Mono, ui-monospace, monospace"
+      }
+    },
+    "radius": {
+      "sm": "0.125rem",
+      "md": "0.1875rem",
+      "lg": "0.25rem",
+      "default": "0.25rem"
+    }
+  },
+
+  "mode": "dark"
+}
