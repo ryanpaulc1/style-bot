@@ -240,75 +240,108 @@
     },
 
     "migration": {
-      "optional": true,
-      "prompt_user": "After installation completes, ASK the user: 'Would you like me to migrate your existing components to use the {{title}} style tokens and components? This will convert inline styles to Tailwind classes and replace custom UI implementations with the pre-styled components. Your component logic will not be changed.'",
+      "description": "MIGRATION: Convert existing components to use Token Atelier styles. This is OPTIONAL and should only be done AFTER the basic setup is verified working.",
+
+      "when_to_migrate": "User explicitly asks to migrate existing code, OR user pastes the Step 2 migration prompt",
 
       "scope": {
-        "include": ["src/components/", "src/pages/", "app/"],
-        "exclude": ["src/components/ui/"],
-        "description": "Migrate files in these directories, but NOT the installed UI library"
+        "include": ["src/components/", "src/pages/", "app/", "src/context/"],
+        "exclude": ["src/components/ui/", "node_modules/"],
+        "description": "Scan these directories for files with inline styles or custom UI patterns"
       },
 
-      "component_mappings": {
-        "description": "Replace custom implementations with UI library components",
+      "what_to_look_for": [
+        "JavaScript style objects: const styles = { ... } or style={{ ... }}",
+        "Hardcoded color values: '#fff', '#000', '#888', 'rgb(...)', 'rgba(...)'",
+        "Hardcoded spacing: padding: '20px', margin: '10px'",
+        "Custom card/container divs with boxShadow and borderRadius",
+        "Custom button elements that could use the Button component",
+        "Custom input fields that could use the Input component",
+        "Custom modal implementations that could use Dialog"
+      ],
+
+      "style_token_mappings": {
+        "description": "Convert inline CSS values to Tailwind classes using theme tokens",
+        "colors": {
+          "backgroundColor: '#fff'": "className=\"bg-background\" or \"bg-card\"",
+          "backgroundColor: '#000'": "className=\"bg-foreground\"",
+          "color: '#888'": "className=\"text-muted-foreground\"",
+          "color: '#666'": "className=\"text-muted-foreground\"",
+          "color: '#444'": "className=\"text-foreground\"",
+          "color: '#333'": "className=\"text-foreground\"",
+          "any purple/violet color": "className=\"text-primary\" or \"text-secondary\"",
+          "any pink/magenta color": "className=\"text-accent\"",
+          "any red color": "className=\"text-destructive\""
+        },
+        "spacing": {
+          "padding: '20px'": "className=\"p-5\"",
+          "padding: '10px'": "className=\"p-2.5\"",
+          "margin: '0 auto'": "className=\"mx-auto\"",
+          "margin: '10px'": "className=\"m-2.5\"",
+          "marginBottom: '10px'": "className=\"mb-2.5\""
+        },
+        "borders": {
+          "borderRadius: '12px'": "className=\"rounded-lg\"",
+          "borderRadius: '8px'": "className=\"rounded-md\"",
+          "borderRadius: '4px'": "className=\"rounded-sm\"",
+          "boxShadow: '...'": "className=\"shadow-md\" or \"shadow-lg\""
+        },
+        "typography": {
+          "fontSize: '24px'": "className=\"text-2xl\"",
+          "fontSize: '15px'": "className=\"text-base\"",
+          "fontSize: '14px'": "className=\"text-sm\"",
+          "fontWeight: 'bold'": "className=\"font-bold\"",
+          "fontStyle: 'italic'": "className=\"italic\""
+        }
+      },
+
+      "component_replacements": {
+        "description": "Replace custom UI implementations with Token Atelier components",
         "mappings": [
           {
-            "pattern": "Custom button elements with onClick handlers and styled backgrounds",
-            "replace_with": "<Button> from @/components/ui/button",
-            "variants": ["default", "secondary", "destructive", "outline", "ghost", "link"]
+            "pattern": "Custom card container: <div style={styles.card}> with boxShadow/borderRadius",
+            "replace_with": "<Card><CardContent>...</CardContent></Card>",
+            "import": "import { Card, CardContent } from './components/ui/card'"
           },
           {
-            "pattern": "Custom card/container divs with shadows and rounded corners",
-            "replace_with": "<Card>, <CardHeader>, <CardTitle>, <CardDescription>, <CardContent>, <CardFooter> from @/components/ui/card"
+            "pattern": "Custom button: <button style={...} onClick={...}>",
+            "replace_with": "<Button onClick={...}>",
+            "import": "import { Button } from './components/ui/button'"
           },
           {
-            "pattern": "Custom modal/dialog implementations with overlays",
-            "replace_with": "<Dialog>, <DialogTrigger>, <DialogContent>, <DialogHeader>, <DialogTitle>, <DialogDescription> from @/components/ui/dialog"
+            "pattern": "Custom input: <input style={...} />",
+            "replace_with": "<Input ... />",
+            "import": "import { Input } from './components/ui/input'"
           },
           {
-            "pattern": "Custom text input fields",
-            "replace_with": "<Input> from @/components/ui/input"
-          },
-          {
-            "pattern": "Custom avatar/profile image components",
-            "replace_with": "<Avatar>, <AvatarImage>, <AvatarFallback> from @/components/ui/avatar"
-          },
-          {
-            "pattern": "Custom dropdown menus",
-            "replace_with": "<DropdownMenu>, <DropdownMenuTrigger>, <DropdownMenuContent>, <DropdownMenuItem> from @/components/ui/dropdown-menu"
-          },
-          {
-            "pattern": "Custom tab interfaces",
-            "replace_with": "<Tabs>, <TabsList>, <TabsTrigger>, <TabsContent> from @/components/ui/tabs"
-          },
-          {
-            "pattern": "Custom checkbox inputs",
-            "replace_with": "<Checkbox> from @/components/ui/checkbox"
-          },
-          {
-            "pattern": "Custom toggle/switch inputs",
-            "replace_with": "<Switch> from @/components/ui/switch"
+            "pattern": "Custom avatar/profile image",
+            "replace_with": "<Avatar><AvatarImage src={...} /><AvatarFallback>...</AvatarFallback></Avatar>",
+            "import": "import { Avatar, AvatarImage, AvatarFallback } from './components/ui/avatar'"
           }
         ]
       },
 
-      "instructions": {
-        "steps": [
-          "1. Complete standard installation first (all 6 steps)",
-          "2. ASK user if they want to migrate existing components",
-          "3. If user declines, skip migration entirely",
-          "4. If user accepts, scan files in scope.include (excluding scope.exclude)",
-          "5. For each file with inline styles or custom UI patterns, migrate to Token Atelier components",
-          "6. Verify each migrated component renders correctly",
-          "7. Report summary of what was migrated"
-        ],
-        "safeguards": [
-          "DO NOT change component logic or functionality - only styling",
-          "DO NOT migrate if user declines",
-          "PRESERVE all props, state, event handlers, and business logic",
-          "KEEP original file structure and component hierarchy",
-          "ASK user before making changes if uncertain about a conversion"
-        ]
+      "migration_steps": [
+        "1. Scan all files in scope.include directories (excluding scope.exclude)",
+        "2. For each file, identify inline styles and custom UI patterns",
+        "3. Convert style objects to Tailwind className strings using style_token_mappings",
+        "4. Replace custom UI elements with Token Atelier components where appropriate",
+        "5. Remove unused style objects after conversion",
+        "6. Add necessary imports for Token Atelier components",
+        "7. Test that the component still renders and functions correctly"
+      ],
+
+      "safeguards": [
+        "PRESERVE all component logic, state, props, and event handlers",
+        "ONLY change styling - never modify business logic",
+        "If a conversion is unclear, keep the original and add a TODO comment",
+        "Use relative imports for Vite projects: './components/ui/...'",
+        "Use @/ imports for Next.js projects: '@/components/ui/...'"
+      ],
+
+      "example_migration": {
+        "before": "const styles = {\n  card: {\n    backgroundColor: '#fff',\n    borderRadius: '12px',\n    boxShadow: '0 4px 15px rgba(0,0,0,0.1)',\n    padding: '20px'\n  }\n};\n\n<div style={styles.card}>...</div>",
+        "after": "import { Card, CardContent } from './components/ui/card';\n\n<Card>\n  <CardContent className=\"p-5\">\n    ...\n  </CardContent>\n</Card>"
       }
     },
 

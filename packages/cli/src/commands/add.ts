@@ -351,27 +351,31 @@ export async function addCommand(
 
 function getPostInstallPrompt(framework: string, styleName: string): string {
   const isNextJs = framework.startsWith('nextjs');
+  const cssImport = isNextJs ? `import '@/styles/globals.css'` : `import './styles/globals.css'`;
+  const showcaseImport = isNextJs
+    ? `import { Showcase } from '@/components/ui/showcase'`
+    : `import { Showcase } from './components/ui/showcase'`;
+  const entryFile = isNextJs ? 'app/layout.tsx (or pages/_app.tsx)' : 'src/main.tsx';
+  const importNote = isNextJs ? '' : '\n\nIMPORTANT: Use relative imports (./), NOT @/ aliases.';
 
-  if (isNextJs) {
-    return `Read the .tokenatelier-${styleName}.json manifest file. Complete the post-installation:
+  return `STEP 1: Setup (Required)
 
-1. Import the CSS in app/layout.tsx (or pages/_app.tsx):
-   import '@/styles/globals.css'
+Read .tokenatelier-${styleName}.json and complete setup:
+1. Import the CSS in ${entryFile}:
+   ${cssImport}
+2. Render the Showcase component to verify it works:
+   ${showcaseImport}${importNote}
 
-2. Show me a preview by rendering the Showcase component:
-   import { Showcase } from '@/components/ui/showcase'`;
-  }
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  // Vite, CRA, Remix, or unknown - use relative paths
-  return `Read the .tokenatelier-${styleName}.json manifest file. Complete the post-installation:
+STEP 2: Migrate Existing Code (Optional)
 
-1. Import the CSS in src/main.tsx:
-   import './styles/globals.css'
+After setup works, paste this to style your existing components:
 
-2. Show me a preview by rendering the Showcase component in App.tsx:
-   import { Showcase } from './components/ui/showcase'
-
-IMPORTANT: This is a Vite project - use relative imports (./), NOT @/ aliases.`;
+Read .tokenatelier-${styleName}.json migration section. Scan all
+components and pages outside of /components/ui/ for inline styles
+or custom UI. Convert them to Tailwind classes and Token Atelier
+components. Preserve all component logic and functionality.`;
 }
 
 function formatFramework(framework: string): string {
