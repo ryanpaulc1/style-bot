@@ -6,6 +6,7 @@
  */
 import { program } from 'commander';
 import { addCommand } from './commands/add.js';
+import { createCommand } from './commands/create.js';
 import { listCommand } from './commands/list.js';
 import { doctorCommand } from './commands/doctor.js';
 import { authCommand, logoutCommand } from './commands/auth.js';
@@ -13,7 +14,15 @@ program
     .name('token-atelier')
     .description('Premium style guides for React + Tailwind projects')
     .version('1.0.0');
-// Add command - install a style
+// Create command - scaffold new project with style
+program
+    .command('create <project-name>')
+    .description('Create a new project with a Token Atelier style')
+    .option('--style <name>', 'Style to install (skip prompt)')
+    .option('--skip-install', 'Skip npm install', false)
+    .option('-y, --yes', 'Skip confirmation prompts', false)
+    .action(createCommand);
+// Add command - install a style into existing project
 program
     .command('add <style>')
     .description('Install a style into your project')
