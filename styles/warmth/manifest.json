@@ -322,7 +322,21 @@
         ]
       }
     },
-    "showcase_usage": "The Showcase component renders all UI components for preview. User should create a route (e.g., app/showcase/page.tsx) that imports and renders <Showcase /> from @/components/ui/showcase. This provides live preview with automatic CSS sync when editing styles.",
+    "showcase_usage": "The Showcase component renders all UI components for preview. Create a page that imports and renders <Showcase />. IMPORTANT: Use the correct import path for the project's framework - for Next.js use '@/components/ui/showcase', for Vite/CRA use relative paths like '../components/ui/showcase' or configure a path alias.",
+    "import_paths": {
+      "description": "Use the correct import syntax based on the project framework",
+      "nextjs": {
+        "components": "@/components/ui",
+        "styles": "@/styles/globals.css",
+        "note": "Next.js projects typically have @ alias configured in tsconfig.json"
+      },
+      "vite": {
+        "components": "Use relative path from the importing file, e.g., '../components/ui' or './components/ui'",
+        "styles": "Use relative path, e.g., './styles/globals.css' from src/main.tsx",
+        "note": "Vite does not have @ alias by default. Use relative imports or configure vite.config.ts"
+      },
+      "general": "ALWAYS check if @ alias is configured before using it. If not configured, use relative imports."
+    },
     "auth_required": true,
     "auth_note": "This is a premium style. User needs a Token Atelier API key. Check for .tokenatelier.json config in project root or home directory, or ask user for their API key."
   },
