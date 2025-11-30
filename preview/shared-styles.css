@@ -49,93 +49,10 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--button-gradient-hover, color-mix(in srgb, var(--primary) 90%, black));
 }
 
-/* Light mode variables */
-:root {
-  /* Background & Foreground */
-  --background: hsl(0 0% 100%);
-  --foreground: hsl(222 47% 11%);
-
-  /* Card */
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(222 47% 11%);
-
-  /* Popover */
-  --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(222 47% 11%);
-
-  /* Primary - Aurora Teal */
-  --primary: hsl(199 89% 48%);
-  --primary-foreground: hsl(0 0% 100%);
-
-  /* Secondary - Aurora Purple */
-  --secondary: hsl(280 65% 60%);
-  --secondary-foreground: hsl(0 0% 100%);
-
-  /* Accent - Aurora Pink */
-  --accent: hsl(330 80% 60%);
-  --accent-foreground: hsl(0 0% 100%);
-
-  /* Muted */
-  --muted: hsl(220 14% 96%);
-  --muted-foreground: hsl(220 9% 46%);
-
-  /* Destructive */
-  --destructive: hsl(0 84% 60%);
-  --destructive-foreground: hsl(0 0% 100%);
-
-  /* Border & Input */
-  --border: hsl(220 13% 91%);
-  --input: hsl(220 13% 91%);
-  --ring: hsl(199 89% 48%);
-
-  /* Border Radius */
-  --radius: 0.5rem;
-
-  /* Font Families */
-  --font-family-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-family-heading: "Aboreto", ui-serif, Georgia, serif;
-  --font-family-mono: "JetBrains Mono", ui-monospace, monospace;
-}
-
-/* Dark mode variables */
-.dark {
-  /* Background & Foreground - Deep Navy */
-  --background: hsl(222 47% 11%);
-  --foreground: hsl(210 40% 98%);
-
-  /* Card - Slightly Lighter Navy */
-  --card: hsl(222 47% 14%);
-  --card-foreground: hsl(210 40% 98%);
-
-  /* Popover */
-  --popover: hsl(222 47% 14%);
-  --popover-foreground: hsl(210 40% 98%);
-
-  /* Primary - Aurora Teal */
-  --primary: hsl(199 89% 48%);
-  --primary-foreground: hsl(222 47% 11%);
-
-  /* Secondary - Aurora Purple */
-  --secondary: hsl(280 65% 60%);
-  --secondary-foreground: hsl(0 0% 100%);
-
-  /* Accent - Aurora Pink */
-  --accent: hsl(330 80% 60%);
-  --accent-foreground: hsl(0 0% 100%);
-
-  /* Muted - Darker shade */
-  --muted: hsl(217 33% 17%);
-  --muted-foreground: hsl(215 20% 65%);
-
-  /* Destructive */
-  --destructive: hsl(0 62% 50%);
-  --destructive-foreground: hsl(0 0% 100%);
-
-  /* Border & Input */
-  --border: hsl(217 33% 20%);
-  --input: hsl(217 33% 20%);
-  --ring: hsl(199 89% 48%);
-}
+/*
+ * Token values are loaded dynamically from /styles/{name}/tokens.v4.css
+ * The @theme block below maps CSS variables to Tailwind tokens at build time
+ */
 
 /* Theme token mappings for Tailwind v4 */
 @theme inline {
