@@ -1,15 +1,218 @@
 /* Token Atelier - Preview App Styles */
 
-/* All @import statements must come first */
-@import "../shared/base.v4.css";
-@import "../styles/midnight-aurora/tokens.v4.css";
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Tailwind must be imported from preview's node_modules */
+@import "tailwindcss";
 
 /* Tell Tailwind to scan shared components for class names */
 @source "../shared/components/*.tsx";
 @source "./src/**/*.tsx";
 
+/* Dark mode custom variant for class-based switching */
+@custom-variant dark (&:is(.dark *));
+
+/* Keyframe animations */
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+/* Base styles */
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-family-sans);
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+}
+
+/* Custom button background with gradient support */
+.bg-button-primary {
+  background: var(--button-gradient, var(--primary));
+}
+
+.bg-button-primary:hover {
+  background: var(--button-gradient-hover, color-mix(in srgb, var(--primary) 90%, black));
+}
+
+/* Light mode variables */
+:root {
+  /* Background & Foreground */
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(222 47% 11%);
+
+  /* Card */
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(222 47% 11%);
+
+  /* Popover */
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(222 47% 11%);
+
+  /* Primary - Aurora Teal */
+  --primary: hsl(199 89% 48%);
+  --primary-foreground: hsl(0 0% 100%);
+
+  /* Secondary - Aurora Purple */
+  --secondary: hsl(280 65% 60%);
+  --secondary-foreground: hsl(0 0% 100%);
+
+  /* Accent - Aurora Pink */
+  --accent: hsl(330 80% 60%);
+  --accent-foreground: hsl(0 0% 100%);
+
+  /* Muted */
+  --muted: hsl(220 14% 96%);
+  --muted-foreground: hsl(220 9% 46%);
+
+  /* Destructive */
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+
+  /* Border & Input */
+  --border: hsl(220 13% 91%);
+  --input: hsl(220 13% 91%);
+  --ring: hsl(199 89% 48%);
+
+  /* Border Radius */
+  --radius: 0.5rem;
+
+  /* Font Families */
+  --font-family-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-family-heading: "Aboreto", ui-serif, Georgia, serif;
+  --font-family-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Dark mode variables */
+.dark {
+  /* Background & Foreground - Deep Navy */
+  --background: hsl(222 47% 11%);
+  --foreground: hsl(210 40% 98%);
+
+  /* Card - Slightly Lighter Navy */
+  --card: hsl(222 47% 14%);
+  --card-foreground: hsl(210 40% 98%);
+
+  /* Popover */
+  --popover: hsl(222 47% 14%);
+  --popover-foreground: hsl(210 40% 98%);
+
+  /* Primary - Aurora Teal */
+  --primary: hsl(199 89% 48%);
+  --primary-foreground: hsl(222 47% 11%);
+
+  /* Secondary - Aurora Purple */
+  --secondary: hsl(280 65% 60%);
+  --secondary-foreground: hsl(0 0% 100%);
+
+  /* Accent - Aurora Pink */
+  --accent: hsl(330 80% 60%);
+  --accent-foreground: hsl(0 0% 100%);
+
+  /* Muted - Darker shade */
+  --muted: hsl(217 33% 17%);
+  --muted-foreground: hsl(215 20% 65%);
+
+  /* Destructive */
+  --destructive: hsl(0 62% 50%);
+  --destructive-foreground: hsl(0 0% 100%);
+
+  /* Border & Input */
+  --border: hsl(217 33% 20%);
+  --input: hsl(217 33% 20%);
+  --ring: hsl(199 89% 48%);
+}
+
+/* Theme token mappings for Tailwind v4 */
+@theme inline {
+  /* Colors - map CSS variables to Tailwind tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Border Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Font Families */
+  --font-sans: var(--font-family-sans);
+  --font-heading: var(--font-family-heading);
+  --font-mono: var(--font-family-mono);
+
+  /* Text Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+
+  /* Letter Spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
 /*
  * Note: Style tokens are also loaded dynamically by the StyleLoader component.
  * This allows switching between styles without rebuilding.
- * The static import above ensures Tailwind generates all utility classes.
  */
