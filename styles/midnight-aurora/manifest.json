@@ -324,18 +324,28 @@
     },
     "showcase_usage": "The Showcase component renders all UI components for preview. Create a page that imports and renders <Showcase />. IMPORTANT: Use the correct import path for the project's framework - for Next.js use '@/components/ui/showcase', for Vite/CRA use relative paths like '../components/ui/showcase' or configure a path alias.",
     "import_paths": {
-      "description": "Use the correct import syntax based on the project framework",
+      "description": "CRITICAL: Use the correct import syntax based on the project framework. Wrong paths cause white screens.",
       "nextjs": {
         "components": "@/components/ui",
         "styles": "@/styles/globals.css",
+        "example_app_import": "import { Button } from '@/components/ui/button'",
+        "example_css_import": "import '@/styles/globals.css'",
         "note": "Next.js projects typically have @ alias configured in tsconfig.json"
       },
       "vite": {
-        "components": "Use relative path from the importing file, e.g., '../components/ui' or './components/ui'",
-        "styles": "Use relative path, e.g., './styles/globals.css' from src/main.tsx",
-        "note": "Vite does not have @ alias by default. Use relative imports or configure vite.config.ts"
+        "components": "./components/ui (from src/App.tsx)",
+        "styles": "./styles/globals.css (from src/main.tsx)",
+        "example_app_import": "import { Button } from './components/ui/button'",
+        "example_css_import": "import './styles/globals.css'",
+        "example_showcase": "import { Showcase } from './components/ui/showcase'",
+        "note": "Vite does NOT have @ alias by default. The CLI automatically rewrites component imports to use relative paths. Use relative imports from your app files."
       },
-      "general": "ALWAYS check if @ alias is configured before using it. If not configured, use relative imports."
+      "internal_component_imports": {
+        "description": "The CLI handles this automatically - components import from each other correctly",
+        "utils_path": "../../lib/utils (from src/components/ui/*.tsx to src/lib/utils.ts)",
+        "sibling_components": "./{component} (components in the same directory)"
+      },
+      "general": "ALWAYS check if @ alias is configured before using it. If not configured, use relative imports. The CLI rewrites @/ imports in component files for non-Next.js projects."
     },
     "auth_required": true,
     "auth_note": "This is a premium style. User needs a Token Atelier API key. Check for .tokenatelier.json config in project root or home directory, or ask user for their API key."

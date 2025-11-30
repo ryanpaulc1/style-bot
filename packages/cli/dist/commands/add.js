@@ -258,10 +258,34 @@ export async function addCommand(styleName, options) {
     console.log();
     console.log(ui.chalk.cyan('─'.repeat(60)));
     console.log();
-    console.log(ui.chalk.white(`Read the manifest.json file at src/token-atelier/manifest.json and complete the post-installation steps: import the globals.css file into the app entry point, then show me a preview using the Showcase component.`));
+    // Framework-specific prompt
+    const prompt = getPostInstallPrompt(info.framework, styleName);
+    console.log(ui.chalk.white(prompt));
     console.log();
     console.log(ui.chalk.cyan('─'.repeat(60)));
     console.log();
+}
+function getPostInstallPrompt(framework, styleName) {
+    const isNextJs = framework.startsWith('nextjs');
+    if (isNextJs) {
+        return `Read the .tokenatelier-${styleName}.json manifest file. Complete the post-installation:
+
+1. Import the CSS in app/layout.tsx (or pages/_app.tsx):
+   import '@/styles/globals.css'
+
+2. Show me a preview by rendering the Showcase component:
+   import { Showcase } from '@/components/ui/showcase'`;
+    }
+    // Vite, CRA, Remix, or unknown - use relative paths
+    return `Read the .tokenatelier-${styleName}.json manifest file. Complete the post-installation:
+
+1. Import the CSS in src/main.tsx:
+   import './styles/globals.css'
+
+2. Show me a preview by rendering the Showcase component in App.tsx:
+   import { Showcase } from './components/ui/showcase'
+
+IMPORTANT: This is a Vite project - use relative imports (./), NOT @/ aliases.`;
 }
 function formatFramework(framework) {
     const names = {

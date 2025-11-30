@@ -6,7 +6,7 @@ import {
   Palette, Type, MousePointer, Tag, Square, FormInput, ChevronDown, Circle,
   LayoutList, ChevronsUpDown, Maximize2, Menu, Loader, Minus, MessageSquare
 } from "lucide-react"
-import { cn } from "../lib/utils"
+import { cn } from "@/lib/utils"
 
 import { Button } from "./button"
 import { Badge } from "./badge"

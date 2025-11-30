@@ -101,15 +101,35 @@ export async function installComponents(info, components, resolution) {
         }
     }
     let installedCount = 0;
+    // Determine if we need to rewrite imports (non-Next.js projects)
+    const needsImportRewrite = !['nextjs-app', 'nextjs-pages'].includes(info.framework);
     for (const [filename, content] of components) {
         const filePath = path.join(componentsDir, filename);
         if (resolution === 'skip' && await fs.pathExists(filePath)) {
             continue;
         }
-        await fs.writeFile(filePath, content);
+        // Rewrite imports for non-Next.js projects
+        let finalContent = content;
+        if (needsImportRewrite) {
+            finalContent = rewriteImports(content);
+        }
+        await fs.writeFile(filePath, finalContent);
         installedCount++;
     }
     return installedCount;
+}
+/**
+ * Rewrite @/ imports to relative imports for non-Next.js projects
+ * Components are in src/components/ui/, utils is in src/lib/
+ */
+function rewriteImports(content) {
+    // Replace @/lib/utils with ../../lib/utils (from src/components/ui/ to src/lib/)
+    let result = content.replace(/from\s+["']@\/lib\/utils["']/g, 'from "../../lib/utils"');
+    // Replace ../lib/utils with ../../lib/utils (fix incorrect relative path)
+    result = result.replace(/from\s+["']\.\.\/lib\/utils["']/g, 'from "../../lib/utils"');
+    // Replace @/components/ui with relative ./ (same directory)
+    result = result.replace(/from\s+["']@\/components\/ui\/([^"']+)["']/g, 'from "./$1"');
+    return result;
 }
 /**
  * Merge Tailwind config (v3 only)
