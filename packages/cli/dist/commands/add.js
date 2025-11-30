@@ -252,16 +252,15 @@ export async function addCommand(styleName, options) {
     console.log();
     ui.success(`${styleName} has been installed!`);
     console.log();
-    ui.section('Next Steps');
-    ui.listItem('Import globals.css in your app entry point:');
-    console.log(ui.chalk.gray(`    import '@/styles/globals.css'`));
+    ui.section('Next Step');
     console.log();
-    ui.listItem('Preview your components:');
-    console.log(ui.chalk.gray(`    import { Showcase } from '@/components/ui'`));
-    console.log(ui.chalk.gray(`    // Add <Showcase /> to a page`));
+    ui.info('Paste this prompt into Cursor, Claude Code, or your AI assistant:');
     console.log();
-    ui.listItem('Start building:');
-    console.log(ui.chalk.gray(`    import { Button, Card, Dialog } from '@/components/ui'`));
+    console.log(ui.chalk.cyan('─'.repeat(60)));
+    console.log();
+    console.log(ui.chalk.white(`Read the manifest.json file at src/token-atelier/manifest.json and complete the post-installation steps: import the globals.css file into the app entry point, then show me a preview using the Showcase component.`));
+    console.log();
+    console.log(ui.chalk.cyan('─'.repeat(60)));
     console.log();
 }
 function formatFramework(framework) {
