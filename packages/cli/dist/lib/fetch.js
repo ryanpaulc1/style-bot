@@ -6,7 +6,7 @@
  */
 // Base URL for fetching files (can be overridden for testing)
 const SOURCE_BASE = process.env.TOKEN_ATELIER_SOURCE ||
-    'https://raw.githubusercontent.com/ryanpaulc1/style-bot/main';
+    'https://raw.githubusercontent.com/ryanpaulc1/style-bot/staging';
 // List of all component files to fetch
 const COMPONENT_FILES = [
     'accordion.tsx',

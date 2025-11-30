@@ -9,7 +9,7 @@ import type { TailwindVersion } from './detect.js';
 
 // Base URL for fetching files (can be overridden for testing)
 const SOURCE_BASE = process.env.TOKEN_ATELIER_SOURCE ||
-  'https://raw.githubusercontent.com/ryanpaulc1/style-bot/main';
+  'https://raw.githubusercontent.com/ryanpaulc1/style-bot/staging';
 
 export interface StyleFiles {
   manifest: string;
